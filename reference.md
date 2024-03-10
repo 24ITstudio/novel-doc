@@ -10,5 +10,6 @@
 
 ## 前端
 
-[request API](https://zh.uniapp.dcloud.io/api/request/request.html)
+[react 网络请求 文档](https://reactnative.cn/docs/network)
+
 
