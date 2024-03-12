@@ -108,3 +108,6 @@ GET
 ```JSON
 []
 ```
+
+> P.S. 前端对于用户的直接输入，应注意url编码，如使用[encodeURIComponent]( https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/encodeURIComponent)
+
