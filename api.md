@@ -4,7 +4,7 @@
 GET
 /hotnovel
 
-## result
+### result
 
 200
 
