@@ -2,6 +2,8 @@
 
 # 用户相关 API
 
+*NOTE*: 所有 POST 等修改相关的URL都必须以 `/` 结尾
+
 ## 用户注册
 POST
 /register/
@@ -46,7 +48,7 @@ GET, HEAD, OPTIONS
 ```
 
 ## 用户令牌获取
-/token-auth
+/token-auth/
 POST
 ### data
 ```JSON
