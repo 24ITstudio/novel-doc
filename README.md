@@ -10,7 +10,7 @@ with the organization  name as password.
 An exported markdown doc is in [./all-api.md](./all-api.md).
 
 ## Source Code Repo
-- frontend: <https://github.com/24ITstudio/novel-front>
+- frontend: <https://github.com/24ITstudio/novel-frontend>
 - backend: <https://github.com/24ITstudio/novel-backend>
 
 
