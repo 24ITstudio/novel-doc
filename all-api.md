@@ -15,7 +15,7 @@ search: true
 code_clipboard: true
 highlight_theme: darkula
 headingLevel: 2
-generator: "@tarslib/widdershins v4.0.22"
+generator: "@tarslib/widdershins v4.0.23"
 
 ---
 
@@ -453,6 +453,44 @@ GET /novel/{book-id}-{chapter-ord}
 |---|---|---|---|---|---|
 |» content|string|true|none||none|
 
+## GET hotnovel-get
+
+GET /hotnovel
+
+热门小说榜单
+
+> 返回示例
+
+> 200 Response
+
+```json
+[
+  {
+    "id": 1,
+    "name": "string",
+    "desc": "string",
+    "max_chapter": 1
+  }
+]
+```
+
+### 返回结果
+
+|状态码|状态码含义|说明|数据模型|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|成功|Inline|
+
+### 返回数据结构
+
+状态码 **200**
+
+|名称|类型|必选|约束|中文名|说明|
+|---|---|---|---|---|---|
+|» id|integer|false|none||none|
+|» name|string|false|none||none|
+|» desc|string|false|none||none|
+|» max_chapter|integer|false|none||none|
+
 # user
 
 ## POST user-register
@@ -475,22 +513,20 @@ POST /register/
 |名称|位置|类型|必选|说明|
 |---|---|---|---|---|
 |body|body|object| 否 |none|
-|» username|body|string| 是 |none|
+|» username|body|string| 是 |Can contain any unicode letters...|
 |» password|body|string| 是 |none|
 
 > 返回示例
 
-> 成功
+> 201 Response
 
 ```json
 {
-  "username": [
-    "A user with that username already exists."
-  ]
+  "id": 1
 }
 ```
 
-> 400 Response
+> 用户已存在
 
 ```json
 {
@@ -508,6 +544,12 @@ POST /register/
 |400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|用户已存在|Inline|
 
 ### 返回数据结构
+
+状态码 **201**
+
+|名称|类型|必选|约束|中文名|说明|
+|---|---|---|---|---|---|
+|» id|integer|true|none||user id|
 
 状态码 **400**
 
@@ -540,11 +582,20 @@ GET /user/{user-id}/
 }
 ```
 
+> 404 Response
+
+```json
+{
+  "detail": "Not found."
+}
+```
+
 ### 返回结果
 
 |状态码|状态码含义|说明|数据模型|
 |---|---|---|---|
 |200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|成功|Inline|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|记录不存在|Inline|
 
 ### 返回数据结构
 
@@ -554,6 +605,12 @@ GET /user/{user-id}/
 |---|---|---|---|---|---|
 |» username|string|true|none||none|
 |» favors|[integer]|true|none||none|
+
+状态码 **404**
+
+|名称|类型|必选|约束|中文名|说明|
+|---|---|---|---|---|---|
+|» detail|string|true|none||none|
 
 ## PATCH user-info-change
 
@@ -633,7 +690,7 @@ DELETE /user/{id}/
 
 ### 返回数据结构
 
-## POST token-get
+## POST login-token-get
 
 POST /token-auth/
 
@@ -753,5 +810,76 @@ DELETE /favor/{novel-id}/
 
 ### 返回数据结构
 
+## GET user-id-get
+
+GET /user-id/{username}/
+
+通过username获得user的id
+
+### 请求参数
+
+|名称|位置|类型|必选|说明|
+|---|---|---|---|---|
+|username|path|string| 是 |none|
+
+> 返回示例
+
+> 200 Response
+
+```json
+{
+  "id": "string"
+}
+```
+
+### 返回结果
+
+|状态码|状态码含义|说明|数据模型|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|成功|Inline|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|该用户名不存在|Inline|
+
+### 返回数据结构
+
+状态码 **200**
+
+|名称|类型|必选|约束|中文名|说明|
+|---|---|---|---|---|---|
+|» id|string|true|none||user id|
+
+状态码 **404**
+
+|名称|类型|必选|约束|中文名|说明|
+|---|---|---|---|---|---|
+|» details|string|true|none||none|
+
 # 数据模型
+
+<h2 id="tocS_Novel">Novel</h2>
+
+<a id="schemanovel"></a>
+<a id="schema_Novel"></a>
+<a id="tocSnovel"></a>
+<a id="tocsnovel"></a>
+
+```json
+{
+  "id": 0,
+  "name": "string",
+  "desc": "string",
+  "max_chapter": 0,
+  "tag": "string"
+}
+
+```
+
+### 属性
+
+|名称|类型|必选|约束|中文名|说明|
+|---|---|---|---|---|---|
+|id|integer|true|none||none|
+|name|string|true|none||none|
+|desc|string|true|none||none|
+|max_chapter|integer|true|none||none|
+|tag|string|false|none||none|
 
