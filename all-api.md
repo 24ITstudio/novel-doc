@@ -356,6 +356,66 @@ requiring logined user
 |---|---|---|---|---|---|
 |» detail|string|true|none||none|
 
+## GET tags-search
+
+GET /novel-tag
+
+search novels by tags
+
+### 请求参数
+
+|名称|位置|类型|必选|说明|
+|---|---|---|---|---|
+|search|query|string| 否 |none|
+
+> 返回示例
+
+> 成功
+
+```json
+[
+  {
+    "id": 1,
+    "name": "n1",
+    "desc": "Desc",
+    "max_chapter": 1,
+    "tag": "t"
+  }
+]
+```
+
+> {id}非法
+
+```json
+{
+  "details": "not found"
+}
+```
+
+### 返回结果
+
+|状态码|状态码含义|说明|数据模型|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|成功|Inline|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|{id}非法|Inline|
+
+### 返回数据结构
+
+状态码 **200**
+
+|名称|类型|必选|约束|中文名|说明|
+|---|---|---|---|---|---|
+|» id|integer|false|none||none|
+|» name|string|false|none||none|
+|» desc|string|false|none||none|
+|» max_chapter|integer|false|none||none|
+
+状态码 **404**
+
+|名称|类型|必选|约束|中文名|说明|
+|---|---|---|---|---|---|
+|» details|string|true|none||none|
+
 ## GET name-search
 
 GET /novel
@@ -490,6 +550,33 @@ GET /hotnovel
 |» name|string|false|none||none|
 |» desc|string|false|none||none|
 |» max_chapter|integer|false|none||none|
+
+## GET tags-list
+
+GET /novel-tag/
+
+get all tags
+获得所有标签
+
+> 返回示例
+
+> 成功
+
+```json
+[
+  "",
+  "t",
+  "t1"
+]
+```
+
+### 返回结果
+
+|状态码|状态码含义|说明|数据模型|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|成功|Inline|
+
+### 返回数据结构
 
 # user
 
